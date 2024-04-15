@@ -17,6 +17,26 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 
 body {
   color: rgb(var(--foreground-rgb));
@@ -47,4 +67,8 @@ body {
 .poppins-bold {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
+}
+
+.dashboardWidget {
+  @apply bg-light_grey rounded-xl shadow-xl p-7
 }

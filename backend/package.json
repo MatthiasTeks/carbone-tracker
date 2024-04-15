@@ -10,7 +10,8 @@
     "resetDB": "ts-node-dev src/utils/reset-db.ts",
     "lint": "echo '----- Checking Backend...' && npx prettier --debug-check . && eslint --ext .ts . && echo '----- Done!'",
     "fix": "prettier --write . && eslint --fix --ext .ts .",
-    "test": "jest --watch"
+    "test": "jest",
+    "testDB:wait": "docker compose -f docker-compose.integration-tests.yml up testDB --wait"
   },
   "author": "",
   "license": "ISC",

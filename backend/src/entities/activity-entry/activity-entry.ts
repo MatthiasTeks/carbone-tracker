@@ -31,9 +31,9 @@ export default class ActivityEntry extends BaseEntity {
   @Field()
   name?: string;
 
-  @Column({ nullable: true, type: 'text' })
+  @Column({ nullable: true, default: 0 })
   @Field()
-  input?: string;
+  input?: number;
 
   @Field(() => User)
   @ManyToOne(() => User, (user) => user.activityEntries, {

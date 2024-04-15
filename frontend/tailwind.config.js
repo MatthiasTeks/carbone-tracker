@@ -18,6 +18,10 @@ module.exports = {
         "medium_green": "#31a531",
         "light_blue": "#9CC3DE"
       },
+      borderWidth: {
+        DEFAULT: '1px',
+      },
+
     },
   },
   plugins: [require('daisyui')],

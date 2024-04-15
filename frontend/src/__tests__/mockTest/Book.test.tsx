@@ -53,7 +53,7 @@ describe('Liste des livres', () => {
     );
     await waitFor(() => {
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      expect(container).toMatchSnapshot();
+      expect(container.baseElement).toMatchSnapshot();
     });
   });
 });
