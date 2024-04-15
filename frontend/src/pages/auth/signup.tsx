@@ -83,7 +83,7 @@ export default function Signup() {
           dernières activités !
         </Typography>
         <form onSubmit={handleSubmit} className='py-4'>
-          <div className='w-[300px]'>
+          <div className='w-[450px]'>
             <InputLabel
               name='email'
               label='email'
@@ -96,7 +96,7 @@ export default function Signup() {
               required
             />
           </div>
-          <div className='mt-3 w-[300px]'>
+          <div className='mt-3 w-[450px]'>
             <InputLabel
               name='password'
               label='mot de passe'
@@ -109,7 +109,7 @@ export default function Signup() {
               required
             />
           </div>
-          <div className='mt-3 w-[300px]'>
+          <div className='mt-3 w-[450px]'>
             <InputLabel
               name='confirmPassword'
               label='confirmer le mot de passe'
