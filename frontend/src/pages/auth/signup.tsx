@@ -144,13 +144,13 @@ export default function Signup() {
           onClick={() => router.push('/auth/login')}
         >
           <Typography variant='paragraph' className='cursor-default'>
-            Pas encore inscrit ?
+            Déjà inscrit ?
           </Typography>
           <Typography
             variant='paragraph'
             className='font-semibold pl-2 cursor-pointer text-medium_green'
           >
-            Crée ton compte
+            Connecte toi
           </Typography>
         </div>
       </div>

@@ -100,7 +100,7 @@ export default function Login() {
           onClick={() => router.push('/auth/signup')}
         >
           <Typography variant='paragraph' className='cursor-default'>
-            Pas encore inscris ?
+            Pas encore inscrit ?
           </Typography>
           <Typography
             variant='paragraph'
