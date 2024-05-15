@@ -1,2 +1,4 @@
-global.env
 node_modules
+.env.production
+.env.staging
+global.env

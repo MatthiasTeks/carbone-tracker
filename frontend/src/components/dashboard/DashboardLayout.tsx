@@ -8,7 +8,7 @@ export default function DashboardLayout() {
       <div className='w-7/12 h-full'>
         <div className='h-[44%]  p-3'>
           <div className='dashboardWidget h-full'>
-            <h1>Bienvenue</h1>
+            <h1>Bienvenuey</h1>
             Voici un résumé de vos dépenses mensuelles
             <ListBooks />
             <Title />
