@@ -1,3 +1,3 @@
 export default function Donation() {
-  return <h1>Page donation</h1>;
+  return <h1>Page donationn</h1>;
 }

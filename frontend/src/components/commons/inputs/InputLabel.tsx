@@ -40,7 +40,7 @@ export default function InputLabel({
     <div>
       <label
         htmlFor={props.id}
-        className='block text-sm font-medium leading-6 text-gray-900'
+        className='block text-sm font-medium leading-6 text-gray-900 pb-2'
       >
         {label}
       </label>

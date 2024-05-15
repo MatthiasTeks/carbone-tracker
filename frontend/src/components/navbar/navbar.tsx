@@ -2,9 +2,16 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Typography from '@/components/commons/typography/Typography';
+import AddActivityModal from '../modal/AddActivityModal';
 
 export default function navbar() {
   const router = useRouter();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
 
   const navLink = [
     {
@@ -18,24 +25,6 @@ export default function navbar() {
       link: '/activity-entries/list',
       img: '/icons/co2-icon.png',
       imgHover: '/icons/co2-icon-hover.png',
-    },
-    {
-      name: 'new-activity',
-      link: '/activity-entries/new',
-      img: '/icons/write-icon.png',
-      imgHover: '/icons/write-icon-hover.png',
-    },
-    {
-      name: 'donation',
-      link: '',
-      img: '/icons/donation-icon.png',
-      imgHover: '/icons/donation-icon-hover.png',
-    },
-    {
-      name: 'logout',
-      link: '/auth/login',
-      img: '/icons/logout-icon.png',
-      imgHover: '/icons/logout-icon-hover.png',
     },
   ];
 
@@ -79,7 +68,48 @@ export default function navbar() {
                 />
               </Link>
             ))}
-            <Link href='/' className='nav-link flex justify-around'>
+            <button
+              className={`${isModalOpen ? 'bg-white rounded-s-full' : ''} nav-link flex justify-around w-full pt-2 pb-2 hover:bg-white hover:rounded-s-full`}
+              onClick={toggleModal}
+              onMouseEnter={() => setHoveredLink('new-activity')}
+              onMouseLeave={() => setHoveredLink('')}
+            >
+              <img
+                src={`${isModalOpen || hoveredLink === 'new-activity' ? '/icons/write-icon-hover.png' : '/icons/write-icon.png'}`}
+                alt='new-activity'
+                className='w-10 mr-5'
+              />
+            </button>
+            <Link
+              key='donation'
+              href=''
+              className={`${router.pathname === '' ? 'bg-white rounded-s-full' : ''} nav-link flex justify-around w-full pt-2 pb-2 hover:bg-white hover:rounded-s-full`}
+              onMouseEnter={() => setHoveredLink('donation')}
+              onMouseLeave={() => setHoveredLink('')}
+            >
+              <img
+                src={`${router.pathname === '' || hoveredLink === 'donation' ? '/icons/donation-icon-hover.png' : '/icons/donation-icon.png'}`}
+                alt={'donation'}
+                className='w-10 mr-5'
+              />
+            </Link>
+            <Link
+              key='logout'
+              href='/auth/login'
+              className={`${router.pathname === '/auth/login' ? 'bg-white rounded-s-full' : ''} nav-link flex justify-around w-full pt-2 pb-2 hover:bg-white hover:rounded-s-full`}
+              onMouseEnter={() => setHoveredLink('logout')}
+              onMouseLeave={() => setHoveredLink('')}
+            >
+              <img
+                src={`${router.pathname === '/auth/login' || hoveredLink === 'logout' ? '/icons/logout-icon-hover.png' : '/icons/logout-icon.png'}`}
+                alt={'logout'}
+                className='w-10 mr-5'
+              />
+            </Link>
+            <Link
+              href='/'
+              className='nav-link flex justify-around w-full pt-2 pb-2'
+            >
               <label
                 tabIndex={0}
                 className='btn btn-ghost btn-circle avatar w-full pr-5'
@@ -93,6 +123,8 @@ export default function navbar() {
           </div>
         </div>
       </div>
+      {isModalOpen && <AddActivityModal onClose={toggleModal} />}
+      {isModalOpen && <div className='overlay'></div>}
     </>
   );
 }

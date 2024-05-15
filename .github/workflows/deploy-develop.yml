@@ -1,0 +1,49 @@
+name: Test, compile and push client and server to production
+
+on:
+  push:
+    branches: ["develop"]
+  workflow_dispatch:
+
+jobs:
+  client-tests:
+    uses: WildCodeSchool/2023-09-wns-bleu-carbon-tracker/.github/workflows/tests-front.yml@develop
+
+  e2e-tests:
+    uses: WildCodeSchool/2023-09-wns-bleu-carbon-tracker/.github/workflows/e2e-test.yml@develop
+
+  integration-tests:
+    uses: WildCodeSchool/2023-09-wns-bleu-carbon-tracker/.github/workflows/integration-test.yml@develop
+
+  build-and-push-server:
+    needs:
+      - integration-tests
+      - e2e-tests
+    uses: WildCodeSchool/2023-09-wns-bleu-carbon-tracker/.github/workflows/build-backend.yml@develop
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+    with:
+      image_name: carbontracker/carbon-tracker-api
+
+  build-and-push-client:
+    needs:
+      - client-tests
+      - e2e-tests
+    uses: WildCodeSchool/2023-09-wns-bleu-carbon-tracker/.github/workflows/build-frontend.yml@develop
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+    with:
+      image_name: carbontracker/carbon-tracker-client
+
+  notify-vps:
+    needs:
+      - build-and-push-client
+      - build-and-push-server
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call VPS webhook to update develop
+        uses: wei/curl@master
+        with:
+          args: https://ops.carbon-tracker.0923-bleu-1.wns.wilders.dev/hooks/update-develop

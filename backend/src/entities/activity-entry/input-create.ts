@@ -9,6 +9,9 @@ export default class InputCreate {
   @Field()
   input?: number;
 
+  @Field()
+  spendedAt?: string;
+
   @Field(() => ObjectId)
   category: ObjectId;
 }

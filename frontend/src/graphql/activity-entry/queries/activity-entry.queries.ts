@@ -10,6 +10,7 @@ export const LIST_ACTIVITY_ENTRIES = gql`
         name
       }
       createdAt
+      spendedAt
     }
   }
 `;

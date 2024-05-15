@@ -72,3 +72,14 @@ body {
 .dashboardWidget {
   @apply bg-light_grey rounded-xl shadow-xl p-7
 }
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(196, 196, 196, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 20;
+}

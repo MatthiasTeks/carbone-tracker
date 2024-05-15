@@ -19,7 +19,7 @@ const logoutLink = onError((err) => {
       alert(
         "Vous n'êtes pas connecté ou votre session a expiré. Merci de vous reconnecter.",
       );
-      window.location.href = `/login?redirectURLAfterLogin=${window.location.href}`;
+      window.location.href = `/auth/login`;
     } else if (errorCode === 'UNAUTHORIZED') {
       alert(
         "Vous n'avez pas les permissions nécéssaires pour consulter cette partie du site ou effectuer cette action. Vous allez etre déconnecté. Merci de vous reconnecter avec un compte possédant les permissions adéquates.",
@@ -27,7 +27,7 @@ const logoutLink = onError((err) => {
 
       client.mutate({ mutation: LogoutDocument }).then(() => {
         client.resetStore();
-        window.location.href = `/login?redirectURLAfterLogin=${window.location.href}`;
+        window.location.href = `/auth/login`;
       });
     }
   }

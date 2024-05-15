@@ -9,6 +9,9 @@ export default class InputUpdate {
   @Field()
   input?: number;
 
+  @Field()
+  spendedAt?: string;
+
   @Field(() => ObjectId)
   category?: ObjectId;
 }
